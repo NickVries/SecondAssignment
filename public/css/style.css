@@ -1,1 +1,55 @@
+html {
+    font-family: arial, sans-serif;
+    background: #e3e3e3;]
+}
 
+input, button, select, textarea {
+    margin: 5px 0;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 2px;
+    border: 0;
+    outline: 0;
+}
+
+button {
+    padding: 8px 10px;
+    border-radius: 5px;
+    color: white;
+    background: dimgrey;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-bottom: 5px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: dimgrey;
+    border-radius: 5px;
+}
+
+nav ul li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: arial, sans-serif;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+
+.authenticator-button {
+    float: right;
+}

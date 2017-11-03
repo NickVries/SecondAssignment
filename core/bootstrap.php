@@ -1,6 +1,7 @@
 <?php
 
-use App\Services\LoginService;
+use App\Services\AuthorisationService;
+use Nick\Framework\App;
 use Nick\Framework\Helpers;
 
 $config = require Helpers::root() . 'config.php';
