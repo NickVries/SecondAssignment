@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Repositories\UserRepository;
-use App\Services\AuthorisationService;
+use App\Services\AuthenticationService;
+use App\Validators\LoginValidator;
+use App\Validators\RegistrationValidator;
 use Nick\Framework\App;
 use Nick\Framework\Contracts\ServiceProviderInterface;
 use Nick\Framework\Database\Connector;
@@ -28,8 +30,16 @@ class AppServiceProvider implements ServiceProviderInterface
             return new UserRepository(App::get('database'));
         });
 
-        App::bind('authorisationService', function() {
-            return new AuthorisationService();
+        App::bind('authenticationService', function() {
+            return new AuthenticationService();
+        });
+
+        App::bind('registrationValidator', function() {
+            return new RegistrationValidator();
+        });
+
+        App::bind('loginValidator', function() {
+            return new LoginValidator();
         });
     }
 }

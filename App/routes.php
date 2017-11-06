@@ -8,6 +8,7 @@ $router->get('', PagesController::class . '@home');
 $router->get('404', PagesController::class . '@page404');
 $router->get('login', PagesController::class . '@login');
 $router->get('register', PagesController::class . '@register');
+$router->get('logout', LoginController::class . '@logout');
 
 $router->post('register', UsersController::class . '@store');
 $router->post('login', LoginController::class . '@login');

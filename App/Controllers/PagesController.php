@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Services\AuthorisationService;
+use App\Services\AuthenticationService;
 use Nick\Framework\App;
 use Nick\Framework\Request;
 use Nick\Framework\Session;
@@ -11,7 +11,7 @@ class PagesController
 {
     public function home()
     {
-        $currentUser = App::get('authorisationService')->authenticatedUser();
+        $currentUser = App::get('authenticationService')->authenticatedUser();
 
         return view('index', compact('currentUser'));
     }
@@ -25,10 +25,13 @@ class PagesController
 
     public function login()
     {
-        if (App::get('authorisationService')->authenticatedUser()) {
-            redirect('');
+        if (App::get('authenticationService')->checklogin()) {
+            return redirect('');
         }
-        return view('login');
+
+        $loginErrors = Session::getFlash('loginErrors');
+
+        return view('login', compact('loginErrors'));
     }
 
     public function register()

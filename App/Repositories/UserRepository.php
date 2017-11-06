@@ -34,12 +34,22 @@ class UserRepository
         return $userId;
     }
 
-    public function getUser($id)
+    public function getUserById($id)
     {
         return App::get('database')
             ->select('name', 'id')
             ->from('users')
             ->where('id', '=', $id)
+            ->stopHetInMij(User::class)
+            ->first();
+    }
+
+    public function getUserByUsername($username)
+    {
+        return App::get('database')
+            ->select('name', 'id')
+            ->from('users')
+            ->where('username', '=', $username)
             ->stopHetInMij(User::class)
             ->first();
     }

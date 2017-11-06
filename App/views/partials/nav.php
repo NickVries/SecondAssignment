@@ -5,7 +5,7 @@
         <li>
             <a href="/">Home</a>
             </li>
-        <?php if (!App::get('authorisationService')->authenticatedUser()) : ?>
+        <?php if (!App::get('authenticationService')->authenticatedUser()) : ?>
         <li>
             <a class="authenticator-button" href="login">Login</a>
         </li>
