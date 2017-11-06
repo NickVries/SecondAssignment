@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Clients\GithubClient;
 use App\Repositories\UserRepository;
 use App\Services\AuthenticationService;
 use App\Validators\LoginValidator;
@@ -40,6 +41,10 @@ class AppServiceProvider implements ServiceProviderInterface
 
         App::bind('loginValidator', function() {
             return new LoginValidator();
+        });
+
+        App::bind('githubClient', function() {
+            return new githubClient();
         });
     }
 }

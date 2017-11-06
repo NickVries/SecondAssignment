@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Services\AuthenticationService;
 use Nick\Framework\App;
 
 class LoginController
@@ -29,5 +30,17 @@ class LoginController
     {
         App::get('authenticationService')->logout();
         return redirect('');
+    }
+
+    public function githubLogin()
+    {
+        App::get('authenticationService')->githubLogin();
+
+        redirect('');
+    }
+
+    public function googleLogin()
+    {
+
     }
 }

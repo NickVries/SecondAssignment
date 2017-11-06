@@ -32,4 +32,18 @@ class AuthenticationService
 
         return false;
     }
+
+    public function githubLogin()
+    {
+        App::get('githubClient')->githubLogin();
+
+        $user = App::get('githubClient')->getAuthenticatedUser();
+
+        Session::store('authenticatedUser', $user);
+    }
+
+    public function googleLogin()
+    {
+
+    }
 }
