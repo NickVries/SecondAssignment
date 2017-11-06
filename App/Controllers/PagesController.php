@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Services\AuthenticationService;
 use Nick\Framework\App;
 use Nick\Framework\Request;
 use Nick\Framework\Session;
@@ -30,16 +29,17 @@ class PagesController
         }
 
         $loginErrors = Session::getFlash('loginErrors');
+        $loginFailedError = Session::getFlash('loginFailedError');
 
-        return view('login', compact('loginErrors'));
+        return view('login', compact('loginErrors', 'loginFailedError'));
     }
 
     public function register()
     {
-        $errors = Session::getFlash('registrationErrors');
+        $registrationErrors = Session::getFlash('registrationErrors');
         $duplicateError = Session::getFlash('duplicateUsername');
         $name = $_GET['name'] ?? '';
 
-        return view('register', compact('errors', 'name', 'duplicateError'));
+        return view('register', compact('registrationErrors', 'name', 'duplicateError'));
     }
 }

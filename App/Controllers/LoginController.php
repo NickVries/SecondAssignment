@@ -2,21 +2,27 @@
 
 namespace App\Controllers;
 
-use App\Repositories\UserRepository;
 use Nick\Framework\App;
-use Nick\Framework\Session;
 
 class LoginController
 {
     public function login()
     {
-        App::get('loginValidator')->validate();
+        if (!empty(App::get('loginValidator')->validate())) {
+                return redirect('login');
+        }
 
-        $user = App::get('userRepository')->getUserByUsername($_POST['username']);
+        $user = App::get('userRepository')->getUserByLogin($_POST['username'], $_POST['password']);
 
-        App::get('authenticationService')->login($user->id);
+        if (App::get('loginValidator')->validateUser($user))
+        {
+            App::get('authenticationService')->login($user);
 
-        redirect('');
+            return redirect('');
+        } else {
+            return redirect('login');
+        }
+
     }
 
     public function logout()

@@ -44,12 +44,13 @@ class UserRepository
             ->first();
     }
 
-    public function getUserByUsername($username)
+    public function getUserByLogin($username, $password)
     {
         return App::get('database')
             ->select('name', 'id')
             ->from('users')
             ->where('username', '=', $username)
+            ->where('password', '=', $password)
             ->stopHetInMij(User::class)
             ->first();
     }

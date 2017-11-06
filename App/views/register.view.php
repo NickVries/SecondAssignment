@@ -7,18 +7,18 @@
         Name:
         <input type="text" name="name" value="<?= $name ?>">
     </label>
-    <?= $errors['nameError'] ?? '' ?>
+    <div class="error"><?= $registrationErrors['nameError'] ?? '' ?></div>
     <label>
         Username:
         <input type="text" name="username">
     </label>
-    <?= $errors['usernameError'] ?? '' ?>
-    <?= $duplicateError ?? '' ?>
+    <div class="error"><?= $registrationErrors['usernameError'] ?? '' ?></div>
+    <div class="error"><?= $duplicateError ?? '' ?></div>
     <label>
         Password:
         <input type="password" name="password">
     </label>
-    <?= !empty($errors['passwordError']) ? $errors['passwordError'] : '' ?><br>
+    <div class="error"><?= $registrationErrors['passwordError'] ?? '' ?></div>
     <button>Register</button>
 </form>
 

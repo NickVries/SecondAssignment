@@ -53,3 +53,7 @@ nav ul li a:hover {
 .authenticator-button {
     float: right;
 }
+
+.error {
+    color: red;
+}

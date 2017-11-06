@@ -8,21 +8,14 @@ use Nick\Framework\Session;
 
 class AuthenticationService
 {
-    public function login($id)
+    public function login($user)
     {
-        $user = App::get('userRepository')->getUserById($id);
-
         Session::store('authenticatedUser', $user);
     }
 
     public function authenticatedUser()
     {
         return Session::get('authenticatedUser');
-    }
-
-    public function register()
-    {
-
     }
 
     public function logout()
