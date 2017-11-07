@@ -41,6 +41,15 @@ class LoginController
 
     public function googleLogin()
     {
+        App::get('authenticationService')->googleLogin();
+    }
 
+    public function googleCallback()
+    {
+        App::get('authenticationService')->googleCallback();
+
+        App::get('authenticationService')->getGoogleUser();
+
+        redirect('');
     }
 }

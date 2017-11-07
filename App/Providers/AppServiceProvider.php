@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Clients\GithubClient;
+use App\Clients\GoogleClient;
 use App\Repositories\UserRepository;
 use App\Services\AuthenticationService;
 use App\Validators\LoginValidator;
@@ -45,6 +46,10 @@ class AppServiceProvider implements ServiceProviderInterface
 
         App::bind('githubClient', function() {
             return new githubClient();
+        });
+
+        App::bind('googleClient', function() {
+            return new googleClient();
         });
     }
 }
