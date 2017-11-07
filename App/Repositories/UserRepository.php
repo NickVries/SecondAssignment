@@ -16,42 +16,63 @@ class UserRepository
         $this->database = $database;
     }
 
-    public function create($name, $username, $password)
-    {
+    public function create(
+        $name,
+        $username = null,
+        $password = null,
+        $google_id = null,
+        $github_id = null
+    ) {
         $userData = [
-            'name' => $name,
+            'name'     => $name,
             'username' => $username,
             'password' => $password,
+            'google_id' => $google_id,
+            'github_id' => $github_id,
         ];
 
         try {
             $userId = $this->database->insertInto('users', $userData);
         } catch (InsertDuplicateException $e) {
-            Session::setFlash('duplicateUsername', 'This username is already taken.');
-            return redirect("register?name={$name}");
+            return null;
         }
 
         return $userId;
     }
 
+    public function getUser($assocArray)
+    {
+        $query = App::get('database')
+            ->select('id', 'name', 'google_id', 'github_id')
+            ->from('users')
+            ->stopHetInMij(User::class);
+
+        foreach ($assocArray as $key => $value) {
+            $query->where($key, '=', $value);
+        }
+        return $query->first();
+    }
+
     public function getUserById($id)
     {
-        return App::get('database')
-            ->select('name', 'id')
-            ->from('users')
-            ->where('id', '=', $id)
-            ->stopHetInMij(User::class)
-            ->first();
+        return $this->getUser(['id' => $id]);
     }
 
     public function getUserByLogin($username, $password)
     {
-        return App::get('database')
-            ->select('name', 'id')
-            ->from('users')
-            ->where('username', '=', $username)
-            ->where('password', '=', $password)
-            ->stopHetInMij(User::class)
-            ->first();
+        return $this->getUser(['username' => $username, 'password' => $password]);
+    }
+
+    public function update($column, $value, $assoc)
+    {
+        $query = App::get('database')
+            ->updateTable('users')
+            ->set($column, $value);
+
+        foreach ($assoc as $key => $value) {
+            $query->where($key, '=', $value);
+        }
+
+        $query->update();
     }
 }

@@ -6,6 +6,9 @@ class User
 {
     public $name;
     public $id;
-    public $username;
-    public $password;
+    public $username = null;
+    public $password = null;
+    public $avatar;
+    public $google_id;
+    public $github_id;
 }

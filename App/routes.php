@@ -12,6 +12,7 @@ $router->get('logout', LoginController::class . '@logout');
 $router->get('callback', LoginController::class . '@githubLogin');
 $router->get('google-login', LoginController::class . '@googleLogin');
 $router->get('google-callback', LoginController::class . '@googleCallback');
+$router->get('my-account', PagesController::class . '@myAccount');
 
 $router->post('register', UsersController::class . '@store');
 $router->post('login', LoginController::class . '@login');

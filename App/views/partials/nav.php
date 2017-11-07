@@ -16,6 +16,9 @@
         <li>
             <a class="authenticator-button" href="logout">Logout</a>
         </li>
+        <li>
+            <a href="my-account">My Account</a>
+        </li>
         <?php endif; ?>
     </ul>
 </nav>

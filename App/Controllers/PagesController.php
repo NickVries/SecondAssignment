@@ -42,4 +42,11 @@ class PagesController
 
         return view('register', compact('registrationErrors', 'name', 'duplicateError'));
     }
+
+    public function myAccount()
+    {
+        $authenticatedUser = App::get('authenticationService')->authenticatedUser();
+
+        return view('myAccount', compact('authenticatedUser'));
+    }
 }

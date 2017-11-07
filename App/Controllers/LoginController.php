@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Services\AuthenticationService;
 use Nick\Framework\App;
 
 class LoginController
@@ -47,8 +46,6 @@ class LoginController
     public function googleCallback()
     {
         App::get('authenticationService')->googleCallback();
-
-        App::get('authenticationService')->getGoogleUser();
 
         redirect('');
     }

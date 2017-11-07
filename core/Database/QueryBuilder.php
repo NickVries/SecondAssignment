@@ -18,6 +18,7 @@ class QueryBuilder
     private $select = [];
     private $order;
     private $join = [];
+    private $set;
 
     public function __construct($pdo)
     {
@@ -164,5 +165,40 @@ class QueryBuilder
             }
         }
         return null;
+    }
+
+    public function updateTable($table)
+    {
+        $this->table = "UPDATE {$table}";
+
+        return $this;
+    }
+
+    public function set($column, $value)
+    {
+        $this->set = "SET {$column}={$value}";
+
+        return $this;
+    }
+
+    public function updateQueryString()
+    {
+        $where = $this->where ? 'WHERE '.implode(' AND ', $this->where) : '';
+
+        return "{$this->table} {$this->set} {$where}";
+    }
+
+    public function updateExecute($query)
+    {
+        $statement = $this->pdo->prepare($query);
+
+        $statement->execute($this->values);
+    }
+
+    public function update()
+    {
+        $queryString = $this->updateQueryString();
+
+        $this->updateExecute($queryString);
     }
 }

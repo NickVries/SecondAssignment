@@ -56,8 +56,10 @@ class GithubClient
 
         $user = new User();
 
-        $user->id = $githubUser->id;
+        $user->github_id = $githubUser->id;
         $user->name = $githubUser->name;
+        $user->avatar = $githubUser->avatar_url;
+        $user->username = $githubUser->email;
 
         return $user;
     }
