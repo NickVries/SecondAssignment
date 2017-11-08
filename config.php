@@ -2,10 +2,10 @@
 
 return [
     'database' => [
-        'name'       => 'SecondAssignment',
+        'name'       => 'second_assignment',
         'username'   => 'root',
         'password'   => 'root',
-        'connection' => 'mysql:host=127.0.0.1',
+        'connection' => 'mysql:host=mysql',
         'options'    => [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ],
